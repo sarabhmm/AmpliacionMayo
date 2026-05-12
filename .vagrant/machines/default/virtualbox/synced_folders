@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant/wordpress":{"guestpath":"/vagrant/wordpress","hostpath":"/home/alumnotd/Escritorio/SSIIMAYO/wordpress","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/alumnotd/Escritorio/SSIIMAYO","disabled":false,"__vagrantfile":true}}}

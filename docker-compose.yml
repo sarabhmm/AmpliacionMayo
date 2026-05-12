@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+
+  # SERVICIO DE BASE DE DATOS
+  db:
+    image: mysql:8.0
+    container_name: webfusion_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE:      wordpress_db
+      MYSQL_USER:          wp_user
+      MYSQL_PASSWORD:      wp_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - webfusion_net
+
+  # SERVICIO WORDPRESS
+  wordpress:
+    image: wordpress:6.4-apache
+    container_name: webfusion_wp
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST:     db:3306
+      WORDPRESS_DB_NAME:     wordpress_db
+      WORDPRESS_DB_USER:     wp_user
+      WORDPRESS_DB_PASSWORD: wp_password
+    volumes:
+      - wp_data:/var/www/html
+      # Volumen clave: código PHP del repo accesible en WordPress
+      - /vagrant/wordpress/wp-content:/var/www/html/wp-content
+    networks:
+      - webfusion_net
+
+volumes:
+  db_data:   # Datos de MySQL persistentes entre reinicios
+  wp_data:   # Archivos de WordPress persistentes
+
+networks:
+  webfusion_net:
+    driver: bridge
+
