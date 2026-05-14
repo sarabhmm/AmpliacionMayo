@@ -58,7 +58,7 @@ AmpliacionMayo/
 ### Requisitos Previos
 Asegurate de contar con el siguiente software instalado en tu maquina local:
 *   [VirtualBox](https://virtualbox.org) (Version 7.0 o superior)
-*   [Vagrant](https://hashicorp.com) (Version 2.3 o superior)
+*   [Vagrant](https://developer.hashicorp.com/vagrant) (Version 2.3 o superior)
 *   [Git](https://git-scm.com) (Version 2.30 o superior)
 *   Conexion activa a Internet
 
@@ -120,9 +120,52 @@ fi
 
 ---
 
+### Diagrama de Flujo por Capas
+
+```mermaid
+graph TD
+    %% Definición de capas
+    subgraph Desarrollo ["Entorno Local"]
+        A[Desarrollador]
+        B[Código Fuente]
+    end
+    
+    subgraph GitHub ["Repositorio"]
+        C[AmpliacionMayo]
+    end
+    
+    subgraph VM ["Vagrant VM"]
+        D[provision.sh]
+        E[Volumen compartido]
+    end
+    
+    subgraph Docker ["Docker Compose"]
+        F[WordPress]
+        G[MySQL]
+    end
+
+    %% Flujo de datos
+    A -->|Edicion| B
+    B -->|git push| C
+    C -->|vagrant provision| D
+    D -->|git pull| E
+    E -.-> F
+    F <--> G
+
+    %% Estilos básicos
+    classDef git fill:#fff3bf,stroke:#d9480f;
+    classDef vm fill:#e7f5ff,stroke:#1864ab;
+    classDef docker fill:#e6fcf5,stroke:#087f5b;
+    
+    class C git;
+    class D,E vm;
+    class F,G docker;
+```
+
 ## Colaboradores
 
 
 *   **Sara BHMM** - [@sarabhmm](https://github.com/sarabhmm) 
-*   **Angela DAM** - [@angela-dam](https://github.com/angela-dam) 
+*   **Angela DAM** - [@angela-dam](https://github.com/angela-dam)
+
 
