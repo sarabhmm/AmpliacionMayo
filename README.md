@@ -123,6 +123,6 @@ fi
 ## Colaboradores
 
 
-*   **Sara BH** - [@sarabhmm](https://github.com) 
-*   **Angela Dam** - [@angela-dam](https://github.com) 
+*   **Sara BHMM** - [@sarabhmm](https://github.com/sarabhmm) 
+*   **Angela DAM** - [@angela-dam](https://github.com/angela-dam) 
 
